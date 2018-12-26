@@ -2,7 +2,7 @@
 
 This javascript library contains essential javascript methods for web page development.
 
-Licence
+License
 -------
 
 Copyright (c) 2016-2018 CUPLA SOFTWARE Teemu Lätti teemu.latti@cupla.net
