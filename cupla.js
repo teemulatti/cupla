@@ -105,6 +105,32 @@ function parseValidFloat(n) { n = parseFloat(n); return isNaN(n) ? 0 : n }
 
 var Cupla = {
 
+    waitForImage: function( image, func ) {
+        if ( !image.complete ) {
+            image.onload = function() {
+                func();
+            };
+            image.onerror = function() {
+                func();
+            };
+        } else {
+            post(func);
+        }
+    },
+
+    waitForImages: function( images, func ) {
+        var f = function( images, index, func ) {
+            if ( index < images.length ) {
+                Cupla.waitForImage( images[index], function() {
+                    f( images, index + 1, func );
+                } );
+            } else {
+                func();
+            }
+        };
+        f( images, 0, func );
+    },
+
     /** Opens page */
     openPage: function(url, newWindow) {
         if (newWindow) {
